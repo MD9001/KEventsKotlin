@@ -1,10 +1,11 @@
-package kvant.events.kotlin
+package org.codexr.events.kotlin
 
-import kvant.events.event.EventObject
-import kvant.events.event.EventResult
-import kvant.events.handler.MethodHandler
-import kvant.events.manager.EventManager
-import kvant.events.model.CallResult
+import org.codexr.events.event.EventObject
+import org.codexr.events.event.EventResult
+import org.codexr.events.handler.MethodHandler
+import org.codexr.events.manager.EventManager
+import org.codexr.events.marker.Event
+import org.codexr.events.model.CallResult
 import kotlin.reflect.full.callSuspend
 import kotlin.reflect.jvm.kotlinFunction
 
@@ -14,7 +15,7 @@ suspend fun MethodHandler.executeSuspend(): Any? {
     return method.callSuspend(target, args)
 }
 
-suspend fun EventManager.callSuspend(event: Any, vararg args: Any): CallResult {
+suspend fun EventManager.callSuspend(event: Event, vararg args: Any): CallResult {
     val eventObj = EventObject(event)
 
     val results = arrayListOf<EventResult>()
